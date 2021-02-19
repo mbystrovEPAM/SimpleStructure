@@ -1,1 +1,4 @@
 /TestsUI/target/
+/TestsAPI/target/
+/.idea
+*.iml
