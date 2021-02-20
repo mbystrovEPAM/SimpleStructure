@@ -16,8 +16,6 @@ public abstract class TestBase {
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite() {
         WebDriverManager.chromedriver().setup();
-//        ChromeOptions chromeOptions = new ChromeOptions();
-//        chromeOptions.addArguments("--no-sandbox");
         time = currentTimeMillis();
     }
 

@@ -7,8 +7,10 @@ import com.epam.pages.LoginPage;
 import com.epam.pages.ProfilePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -19,13 +21,23 @@ public class LoginTest extends TestBase {
     public static LoginPage loginPage;
     public static ProfilePage profilePage;
     public static WebDriver driver;
+    public static ChromeOptions chromeOptions;
 
+    @BeforeClass
+    public static void beforeClass() {
+        chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("start-maximized"); // open Browser in maximized mode
+        chromeOptions.addArguments("disable-infobars"); // disabling infobars
+        chromeOptions.addArguments("--disable-extensions"); // disabling extensions
+        chromeOptions.addArguments("--disable-gpu"); // applicable to windows os only
+        chromeOptions.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
+        chromeOptions.addArguments("--no-sandbox"); // Bypass OS security model
+    }
     @BeforeMethod
     public static void beforeMethod() {
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(chromeOptions);
         loginPage = new LoginPage(driver);
         profilePage = new ProfilePage(driver);
-        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(ConfProperties.getProperty("loginpage"));
     }
