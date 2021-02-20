@@ -27,6 +27,7 @@ public class LoginTest extends TestBase {
     public static void beforeClass() {
         chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--no-sandbox"); // Bypass OS security model
+        chromeOptions.addArguments("headless");
         chromeOptions.addArguments("start-maximized"); // open Browser in maximized mode
 //        chromeOptions.addArguments("disable-infobars"); // disabling infobars
 //        chromeOptions.addArguments("--disable-extensions"); // disabling extensions
