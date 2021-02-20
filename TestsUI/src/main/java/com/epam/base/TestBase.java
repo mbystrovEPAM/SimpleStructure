@@ -2,6 +2,7 @@ package com.epam.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -15,6 +16,8 @@ public abstract class TestBase {
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite() {
         WebDriverManager.chromedriver().setup();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--no-sandbox");
         time = currentTimeMillis();
     }
 
